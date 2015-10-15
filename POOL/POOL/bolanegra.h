@@ -16,6 +16,10 @@ struct BolaNegra : public QGraphicsItem
   ///Retorna el canvas de la bola
   QRectF boundingRect() const;
 
+  void setSpeedX(double pSx);
+  void setSpeedY(double pSy);
+  double getSpeedX();
+  double getSpeedY();
 
   ///Pinta la bola
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

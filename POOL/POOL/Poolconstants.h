@@ -41,5 +41,6 @@ const QString WINDOWS_BACKGROUND_IMAGE=":/images/images/pool.png";
 const QString BOLA_BLANCA_IMAGE=":/images/images/bola_blanca.png";
 const QString BOLA_NEGRA_IMAGE=":/images/images/bola_negra.png";
 const QString BOLA_TIRO_IMAGE=":/images/images/bola_tiro.png";
+const QString PALO_POOL_IMAGE=":/images/images/paloPool.png";
 const QString WINDOWS_BACKGROUND_SOUND="qrc:/images/BgSound.mp3";
 #endif // POOLCONSTANTS_H

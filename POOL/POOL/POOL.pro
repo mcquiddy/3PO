@@ -3,7 +3,9 @@
 # Project created by QtCreator 2015-10-11T13:45:07
 #
 #-------------------------------------------------
-QT += core gui multimedia
+QT += core gui\
+ multimedia \
+ serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,8 +13,7 @@ TARGET = POOL
 TEMPLATE = app
 
 
-SOURCES +=\
-    Poolmain.cpp \
+SOURCES +=Poolmain.cpp\
     Poolgame.cpp \
     bolablanca.cpp \
     bolanegra.cpp \
@@ -23,7 +24,8 @@ SOURCES +=\
     logicbolablanca.cpp \
     logicbolanegra.cpp \
     logicbolatiro.cpp \
-    qtbouncingball.cpp
+    qtbouncingball.cpp \
+    palo.cpp
 
 HEADERS  += \
     Poolgame.h \
@@ -39,7 +41,8 @@ HEADERS  += \
     logicbolablanca.h \
     logicbolanegra.h \
     logicbolatiro.h \
-    qtbouncingball.h
+    qtbouncingball.h \
+    palo.h
 
 FORMS    +=
 

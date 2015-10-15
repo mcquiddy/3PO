@@ -6,7 +6,7 @@
 #include <QPainter>
 #include "bolatiro.h"
 
-BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(parent),speed_X(8.0), speed_Y(1.0), escena(scene){
+BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(parent),speed_X(0.0), speed_Y(0.0), escena(scene){
   assert(escena && "La inicializacion de una escena deber ser Administrada");
    escena->addItem(this);
 
@@ -35,7 +35,27 @@ void BolaTiro::advance(int /* phase */)
 }
 
 QRectF BolaTiro::boundingRect() const{
-  return QRectF(BOLA_CORDENADA_X,BOLA_CORDENADA_Y,BOLA_WIDTH,BOLA_HEIGHT);
+    return QRectF(BOLA_CORDENADA_X,BOLA_CORDENADA_Y,BOLA_WIDTH,BOLA_HEIGHT);
+}
+
+void BolaTiro::setSpeedX(double pSx)
+{
+    speed_X=pSx;
+}
+
+void BolaTiro::setSpeedY(double pSy)
+{
+    speed_Y=pSy;
+}
+
+double BolaTiro::getSpeedX()
+{
+    return this->speed_X;
+}
+
+double BolaTiro::getSpeedY()
+{
+ return this->speed_Y;
 }
 
 void BolaTiro::paint(QPainter *painter,const QStyleOptionGraphicsItem * ,QWidget *)

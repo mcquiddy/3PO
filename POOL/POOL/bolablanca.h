@@ -14,6 +14,11 @@ struct BolaBlanca : public QGraphicsItem
   ///Movimiento de la bola
   void advance(int phase);
 
+  void setSpeedX(double pSx);
+  void setSpeedY(double pSy);
+  double getSpeedX();
+  double getSpeedY();
+
   ///Retorna el canvas de la bola
   QRectF boundingRect() const;
 
