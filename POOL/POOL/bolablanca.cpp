@@ -9,6 +9,13 @@
 BolaBlanca::BolaBlanca(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(parent),speed_X(0.0), speed_Y(0.0), escena(scene){
   assert(escena && "La inicializacion de una escena deber ser Administrada");
    escena->addItem(this);
+   bolasound = new QMediaPlayer();
+
+  playlist = new QMediaPlaylist();
+
+  playlist->addMedia(QUrl(CHOQUE_SOUND));
+  bolasound->setPlaylist( playlist );
+
 
 }
 
@@ -58,6 +65,22 @@ double BolaBlanca::getSpeedY()
  return this->speed_Y;
 }
 
+void BolaBlanca::setPosicion(int pX, int pY)
+{
+    posX=pX;
+    posY=pY;
+    this->setPos(posX,posY);
+}
+
+int BolaBlanca::getPosx()
+{
+    return this->posX;
+}
+
+int BolaBlanca::getPosy()
+{
+    return this->posY;
+}
 void BolaBlanca::paint(QPainter *painter,const QStyleOptionGraphicsItem * ,QWidget *)
 {
 

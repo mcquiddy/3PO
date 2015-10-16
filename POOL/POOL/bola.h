@@ -25,13 +25,16 @@ public:
    void newBolaBlanca(int pX, int pY);
    void newBolaNegra(int pId, int pX, int pY);
    void newBolaTiro(int pX, int pY);
+   ///Movimiento de la bola
+   void advance(int phase);
+   lista<BolaNegra *> *getBolasNegras();
 //   void setPosBolaBlanca(int pX, int pY);
 //   void setPosBolaNegra(int pId,int pX, int pY);
 //   void setPosBolaTiro(int pX, int pY);
 QPoint pos;
 QGraphicsScene * const escena;
 
-private:
+
 lista<BolaNegra * >   List_Bola_Negra;
 lista<BolaTiro * >   List_Bola_Tiro;
 lista<BolaBlanca * >   List_Bola_Blanca;

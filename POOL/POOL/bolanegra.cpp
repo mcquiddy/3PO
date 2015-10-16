@@ -5,32 +5,105 @@
 #include <QList>
 #include <QPainter>
 #include "bolanegra.h"
+#include <math.h>
+//#include <Poolgame.h>
+//extern Poolgame * juego;
 
 BolaNegra::BolaNegra(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(parent),speed_X(0.0), speed_Y(0.0), escena(scene){
   assert(escena && "La inicializacion de una escena deber ser Administrada");
+  bolasound = new QMediaPlayer();
+
+ playlist = new QMediaPlaylist();
+
+ playlist->addMedia(QUrl(CHOQUE_SOUND));
+ bolasound->setPlaylist( playlist );
+
    escena->addItem(this);
+   fuerza=0;
+   angulo=0;
+   friccion=FRICCION;
 
 }
 
 void BolaNegra::advance(int /* phase */)
 {
-  //Colision contra los bordes de la escena
-  if (x() + speed_X + (boundingRect().width() * 0.5) > BOLA_MAX_X) speed_X = -std::abs(speed_X);
-  else if (x() + speed_X - (boundingRect().width() * 0.5) < BOLA_MIN_X) speed_X = std::abs(speed_X);
-  if (y() + speed_Y + (boundingRect().height() * 0.5) > BOLA_MAX_Y) speed_Y = -std::abs(speed_Y);
-  else if (y() + speed_Y - (boundingRect().width() * 0.5) < BOLA_MIN_X) speed_Y = std::abs(speed_Y);
-  this->setPos(x() + speed_X, y() + speed_Y);
+    //Menor fuerza debido ala friccion
+        fuerza=fuerza-friccion;
 
-  //Colision con otro item
-  const QList<QGraphicsItem *> others = collidingItems();
-  if (others.isEmpty()) return;
-  const QGraphicsItem * const other = others[0];
-  if (this->x() < other->x()) speed_X = -std::abs(speed_X);
-  else if (this->x() > other->x()) speed_X =  std::abs(speed_X);
-  if (this->y() < other->y()) speed_Y = -std::abs(speed_Y);
-  else if (this->y() > other->y()) speed_Y =  std::abs(speed_Y);
-  this->setPos(x() + speed_X, y() + speed_Y);
-  this->setPos(x() + speed_X, y() + speed_Y);
+     if(fuerza<=0)return;
+
+
+    //para actualizar los angulos la formula es
+      // 4,3 y 2 caudrante= angulo + angulo del cuadrante donde quiere llegar -  angulo cudrante donde esta
+      // 1 cuadrante = angulo donde quiere llegar - angulo
+      //Colision contra los bordes de la escena
+      if (x() + speed_X + (boundingRect().width() * 0.5) > BOLA_MAX_X){
+
+
+         colisionRight();
+          CalFuerza();
+
+      }
+      else if (x() + speed_X - (boundingRect().width() * 0.5) < BOLA_MIN_X){
+
+
+
+    colisionLeft();
+     CalFuerza();
+      }
+      if (y() + speed_Y + (boundingRect().height() * 0.5) > BOLA_MAX_Y){
+
+
+    colisionDown();
+     CalFuerza();
+      }
+      else if (y() + speed_Y - (boundingRect().width() * 0.5) < BOLA_MIN_Y) {
+
+           colisionUp();
+           CalFuerza();
+      }
+
+     this->setPos(x() + speed_X, y() + speed_Y);
+
+      //Colision con otro item
+//      const QList<QGraphicsItem *> others = collidingItems();
+
+//      if (others.isEmpty()) return;
+//      else{
+//      const QGraphicsItem * const other = others[0];
+//      lista<BolaNegra *> *bolas = juego->bola->getBolasNegras();
+//      for(int i=1; i<bolas->length();i++){
+//      if(((other->x()) ==(bolas->rove(i)->get_data()->getPosx())) & ((other->y()) ==  (bolas->rove(i)->get_data()->getPosy())) ){
+//          bolas->rove(i)->get_data()->setFuerzaAngule(angulo,fuerza);
+//          bolas->rove(i)->get_data()->CalFuerza();
+//      if (this->x() <= other->x()){
+
+//          colisionRight();
+//           CalFuerza();
+//      }
+//      else if (this->x() >= other->x()){
+
+//          colisionLeft();
+//           CalFuerza();
+//      }
+//      if (this->y() <= other->y()) {
+//          colisionDown();
+//           CalFuerza();
+//      }
+//      else if (this->y() >= other->y()){
+
+//          colisionUp();
+//           CalFuerza();
+//      }
+
+//      break;
+//     }
+//    }
+
+//      this->setPos(x() + speed_X, y() + speed_Y);
+
+//      }
+
 
 }
 
@@ -55,7 +128,24 @@ double BolaNegra::getSpeedX()
 
 double BolaNegra::getSpeedY()
 {
- return this->speed_Y;
+    return this->speed_Y;
+}
+
+void BolaNegra::setPosicion(int pX, int pY)
+{
+    posX=pX;
+    posY=pY;
+    this->setPos(posX,posY);
+}
+
+int BolaNegra::getPosx()
+{
+    return this->posX;
+}
+
+int BolaNegra::getPosy()
+{
+    return this->posY;
 }
 void BolaNegra::paint(QPainter *painter,const QStyleOptionGraphicsItem * ,QWidget *)
 {
@@ -78,3 +168,74 @@ void BolaNegra::paint(QPainter *painter,const QStyleOptionGraphicsItem * ,QWidge
 
 }
 
+void BolaNegra::setFuerzaAngule(qreal pAngulo, double pFuerza)
+{
+    fuerza=pFuerza;
+    angulo=pAngulo;
+}
+
+void BolaNegra::CalFuerza()
+{
+    speed_X=  cos(angulo* PI / 180.0)*fuerza;
+    speed_X=floorf(speed_X * 100) / 100;//Redeondear a dos digitos
+    speed_Y= sin(angulo* PI / 180.0)*fuerza;
+    speed_Y=floorf(speed_Y * 100) / 100;//Redeondear a dos digitos
+
+
+ if((angulo<=PRIMER_CUADRANTE) & (angulo>0)){//si esta en el primer cuadrante
+    speed_Y=std::abs(speed_Y);
+    speed_X=-std::abs(speed_X);
+ }
+ else if((angulo<=SEGUNDO_CUADRANTE) & (angulo>PRIMER_CUADRANTE)){//si esta en el segundo cuadrante
+     speed_Y=std::abs(speed_Y);
+     speed_X=std::abs(speed_X);
+ }
+ else if((angulo<=TERCER_CUADRANTE) & (angulo>SEGUNDO_CUADRANTE)){//si esta en el tercer cuadrante
+     speed_Y=-std::abs(speed_Y);
+     speed_X=std::abs(speed_X);
+ }
+ else if((angulo<=CUARTO_CUADRANTE) & (angulo>TERCER_CUADRANTE)){//si esta en el cuarto cuadrante
+     speed_Y=-std::abs(speed_Y);
+     speed_X=-std::abs(speed_X);
+ }
+}
+
+void BolaNegra::colisionUp()
+{
+    if((angulo<=CUARTO_CUADRANTE) & (angulo>TERCER_CUADRANTE)){// viene del cuarto cuadrante
+         angulo=angulo+PRIMER_CUADRANTE-CUARTO_CUADRANTE;//primer cuadrante
+    }
+     else  if((angulo<=TERCER_CUADRANTE) & (angulo>SEGUNDO_CUADRANTE)){// viene del tercer cuadrante
+      angulo=angulo+SEGUNDO_CUADRANTE-TERCER_CUADRANTE;//segundo cuadrante
+    }
+}
+
+void BolaNegra::colisionLeft()
+{
+    if(angulo<=PRIMER_CUADRANTE & angulo>0){//viene del primer cuadrante
+       angulo=SEGUNDO_CUADRANTE-angulo;//segundo cuadrante
+     }
+     else if(angulo<=CUARTO_CUADRANTE & angulo>TERCER_CUADRANTE){// viene del cuarto cuadrante
+         angulo=angulo+TERCER_CUADRANTE-CUARTO_CUADRANTE;//tercer cuadrante
+     }
+}
+
+void BolaNegra::colisionDown()
+{
+    if((angulo<=SEGUNDO_CUADRANTE) & (angulo>PRIMER_CUADRANTE)){//viene del segundo cuadrante
+         angulo=angulo+TERCER_CUADRANTE-SEGUNDO_CUADRANTE;//tercer cuadrante
+    }
+     else if((angulo<=PRIMER_CUADRANTE) & (angulo>0)){//viene del primer cuadrante
+      angulo=CUARTO_CUADRANTE-angulo;//cuarto cuadrante
+    }
+}
+
+void BolaNegra::colisionRight()
+{
+    if((angulo<=SEGUNDO_CUADRANTE) & (angulo>PRIMER_CUADRANTE)){//viene del segundo cuadrante
+         angulo=angulo+PRIMER_CUADRANTE-SEGUNDO_CUADRANTE;//primer cuadrante
+     }
+      else if((angulo<=TERCER_CUADRANTE) & (angulo>SEGUNDO_CUADRANTE)){// viene del tercer cuadrante
+       angulo=angulo+CUARTO_CUADRANTE-TERCER_CUADRANTE;//cuarto cuadrante
+     }
+}

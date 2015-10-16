@@ -4,6 +4,10 @@
 #include <QGraphicsItem>
 #include <QBrush>
 #include "Poolconstants.h"
+#include <QMediaPlayer>
+#include <QSound>
+#include <QMediaPlaylist>
+#include "linked_list.h"
 struct QGraphicsScene;
 
 struct BolaNegra : public QGraphicsItem
@@ -20,10 +24,19 @@ struct BolaNegra : public QGraphicsItem
   void setSpeedY(double pSy);
   double getSpeedX();
   double getSpeedY();
-
+void setPosicion(int pX, int pY);
+int getPosx();
+int getPosy();
   ///Pinta la bola
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
+  void setFuerzaAngule(qreal pAngulo,double pFuerza);
+  void CalFuerza();
+  void colisionUp();
+  void colisionLeft();
+  void colisionDown();
+  void colisionRight();
+  QMediaPlayer * bolasound;
+   QMediaPlaylist * playlist;
   private:
 
   ///Velocidad horizontal (delta x)
@@ -35,6 +48,12 @@ struct BolaNegra : public QGraphicsItem
 
   ///La escena donde se muestra la bola
   QGraphicsScene * const escena;
+
+  int posX;
+  int posY;
+  qreal angulo;
+  double fuerza;
+  double friccion;
 
 };
 #endif // BOLANEGRA_H

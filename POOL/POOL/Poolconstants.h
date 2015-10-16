@@ -36,11 +36,19 @@ const int BOLA_MIN_X=105;
 const int BOLA_MAX_Y=495;
 const int BOLA_MIN_Y=100;
 
+const  double FRICCION=0.01;
 const int TOTAL_BOLA_NEGRA=10;
+const int PRIMER_CUADRANTE=90;
+const int SEGUNDO_CUADRANTE=180;
+const int TERCER_CUADRANTE=270;
+const int CUARTO_CUADRANTE=360;
+const double PI=3.14159265;
 const QString WINDOWS_BACKGROUND_IMAGE=":/images/images/pool.png";
 const QString BOLA_BLANCA_IMAGE=":/images/images/bola_blanca.png";
 const QString BOLA_NEGRA_IMAGE=":/images/images/bola_negra.png";
 const QString BOLA_TIRO_IMAGE=":/images/images/bola_tiro.png";
 const QString PALO_POOL_IMAGE=":/images/images/paloPool.png";
 const QString WINDOWS_BACKGROUND_SOUND="qrc:/images/BgSound.mp3";
+const QString TIRO_SOUND="qrc:/images/choque.mp3";
+const QString CHOQUE_SOUND="qrc:/images/tiro.mp3";
 #endif // POOLCONSTANTS_H

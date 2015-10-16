@@ -18,7 +18,7 @@ Poolgame::Poolgame(QWidget *parent)
     //crear escena del pool
      escena = new QGraphicsScene();
      escena->setSceneRect(WINDOWS_POSX,WINDOWS_POSY,WINDOWS_WIDTH,WINDOWS_HEIGHT);
-    //setBackgroundBrush(QBrush(QImage(WINDOWS_BACKGROUND_IMAGE)));
+    setBackgroundBrush(QBrush(QImage(WINDOWS_BACKGROUND_IMAGE)));
      // visualizar la escena
      setScene(escena);
      // Le quita los scrolls
@@ -29,23 +29,27 @@ Poolgame::Poolgame(QWidget *parent)
 
     // play music de fondo
     QMediaPlayer * music = new QMediaPlayer();
-    //music->setMedia(QUrl(WINDOWS_BACKGROUND_SOUND));
+    music->setMedia(QUrl(WINDOWS_BACKGROUND_SOUND));
     music->play();
-
+    bola= new Bola(escena);
+    palo=new Palo();
+    escena->addItem(palo);
     //movimiento de las bolas
 QTimer * const timer = new QTimer(this);
 QObject::connect(timer,SIGNAL(timeout()),escena,SLOT(advance()));
 timer->setInterval(20);
 timer->start();
- bola= new Bola(escena);
- palo=new Palo();
- escena->addItem(palo);
+
 //    bola->newBolaBlanca(150,300);
 //    bola->newBolaNegra(1,200,300);
 //    bola->newBolaTiro(300,400);
 
+
+
+
+
     show();
-    Analog();
+   // Analog();
 }
 
 Poolgame *Poolgame::getInstance()
