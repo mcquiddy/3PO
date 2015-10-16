@@ -31,6 +31,7 @@ public:
     Poolgame(QWidget *parent = 0);
     int x;//eje x del arduino
     int y;//eje y del arduino
+    int speed;//fuerza con que se dispara la bola
     QGraphicsScene *   escena;
     Bola * bola;
     Palo *palo;

@@ -18,7 +18,7 @@ Poolgame::Poolgame(QWidget *parent)
     //crear escena del pool
      escena = new QGraphicsScene();
      escena->setSceneRect(WINDOWS_POSX,WINDOWS_POSY,WINDOWS_WIDTH,WINDOWS_HEIGHT);
-    setBackgroundBrush(QBrush(QImage(WINDOWS_BACKGROUND_IMAGE)));
+    //setBackgroundBrush(QBrush(QImage(WINDOWS_BACKGROUND_IMAGE)));
      // visualizar la escena
      setScene(escena);
      // Le quita los scrolls
@@ -29,7 +29,7 @@ Poolgame::Poolgame(QWidget *parent)
 
     // play music de fondo
     QMediaPlayer * music = new QMediaPlayer();
-    music->setMedia(QUrl(WINDOWS_BACKGROUND_SOUND));
+    //music->setMedia(QUrl(WINDOWS_BACKGROUND_SOUND));
     music->play();
 
     //movimiento de las bolas
@@ -44,10 +44,6 @@ timer->start();
 //    bola->newBolaNegra(1,200,300);
 //    bola->newBolaTiro(300,400);
 
-
-
-
-
     show();
     Analog();
 }
@@ -61,22 +57,24 @@ Poolgame *Poolgame::getInstance()
 
 void Poolgame::readSerial()
 {
-    QStringList lista = data.split("*");
+
     serialData = arduino->readAll();
     data = data + QString::fromStdString(serialData.data());
     serialData.clear();
+     QStringList lista = data.split("/");
     if(lista.length()>=3){
-        lista= data.split("/");
+       // lista= data.split("/");
         data=lista.takeAt(1);
         lista=data.split("*");
-        if(lista.length()==2){
+        if(lista.length()==3){
             x=std::atoi(lista.takeAt(0).toStdString().c_str());
             y=std::atoi(lista.takeAt(0).toStdString().c_str());
-            if(x>=0 & x<=1024 & y>=0 & y<=1024){
-                cout<<x<<","<<y<<endl;
+            speed=std::atoi(lista.takeAt(0).toStdString().c_str());
+            if(x>=0 & x<=700 & y>=0 & y<=700){
+                //cout<<x<<","<<y<<","<<speed<<endl;
 
                 data="";
-                palo->setPosicion(x,y);
+                palo->setPosicion(x,y,speed);
             }
             else{
                cout<< "datos invalidos"<<endl;
@@ -88,6 +86,7 @@ void Poolgame::readSerial()
         }
 
     }
+
 }
 
 void Poolgame::Analog()
