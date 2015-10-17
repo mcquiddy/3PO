@@ -18,7 +18,7 @@ BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(
 
 // bolasound->setMedia(QUrl(TIRO_SOUND));
    escena->addItem(this);
-   fuerza=20;
+   fuerza=5;
    angulo  =120;
    friccion=FRICCION;
    CalFuerza();
