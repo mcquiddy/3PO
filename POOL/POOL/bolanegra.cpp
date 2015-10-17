@@ -63,52 +63,64 @@ void BolaNegra::advance(int /* phase */)
            CalFuerza();
       }
     this->setPosicion(x() + speed_X, y() + speed_Y);
-     //this->setPos(x() + speed_X, y() + speed_Y);
 
       //Colision con otro item
-//      const QList<QGraphicsItem *> others = collidingItems();
+      const QList<QGraphicsItem *> others = collidingItems();
 
-//      if (others.isEmpty()) return;
-//      else{
-//      const QGraphicsItem * const other = others[0];
-//      lista<BolaNegra *> *bolas = juego->bola->getBolasNegras();
-//      for(int i=1; i<bolas->length();i++){
-//      if(((other->x()) ==(bolas->rove(i)->get_data()->getPosx())) & ((other->y()) ==  (bolas->rove(i)->get_data()->getPosy())) ){
-//          bolas->rove(i)->get_data()->setFuerzaAngule(angulo,fuerza);
-//          bolas->rove(i)->get_data()->CalFuerza();
-//      if (this->x() <= other->x()){
+      if (others.isEmpty()) return;
+      else{
+      const QGraphicsItem * const other = others[0];
+      lista<BolaNegra *> *bolas = List_Bola_Negra;
+      for(int i=1; i<=bolas->length();i++){
+//if(((other->x())!= (this->posX ))&( (other->y())!= (this->posY))){
+      if(((other->x()) ==(bolas->rove(i)->get_data()->getPosx())) & ((other->y()) ==  (bolas->rove(i)->get_data()->getPosy())) ){
 
-//          colisionRight();
-//           CalFuerza();
-//      }
-//      else if (this->x() >= other->x()){
+          bolas->rove(i)->get_data()->setFuerzaAngule(angulo,fuerza);
+          bolas->rove(i)->get_data()->CalFuerza();
+      if (this->x() <= other->x()){
 
-//          colisionLeft();
-//           CalFuerza();
-//      }
-//      if (this->y() <= other->y()) {
-//          colisionDown();
-//           CalFuerza();
-//      }
-//      else if (this->y() >= other->y()){
+          colisionRight();
+           CalFuerza();
+      }
+      else if (this->x() >= other->x()){
 
-//          colisionUp();
-//           CalFuerza();
-//      }
+          colisionLeft();
+           CalFuerza();
+      }
+      if (this->y() <= other->y()) {
+          colisionDown();
+           CalFuerza();
+      }
+      else if (this->y() >= other->y()){
 
-//      break;
-//     }
-//    }
+          colisionUp();
+           CalFuerza();
+      }
+      bolasound->pause();
+     bolasound->play();
+      break;
+     }
+    //  }
+    }
 
-//      this->setPos(x() + speed_X, y() + speed_Y);
+      this->setPos(x() + speed_X, y() + speed_Y);
+     //bolasound->pause();
 
-//      }
+
+
+
+      }
 
 
 }
 
 QRectF BolaNegra::boundingRect() const{
-  return QRectF(BOLA_CORDENADA_X,BOLA_CORDENADA_Y,BOLA_WIDTH,BOLA_HEIGHT);
+    return QRectF(BOLA_CORDENADA_X,BOLA_CORDENADA_Y,BOLA_WIDTH,BOLA_HEIGHT);
+}
+
+void BolaNegra::setListas(lista<BolaNegra *> *pList_Bola_Negra)
+{
+ List_Bola_Negra=pList_Bola_Negra;
 }
 
 void BolaNegra::setSpeedX(double pSx)
@@ -212,10 +224,10 @@ void BolaNegra::colisionUp()
 
 void BolaNegra::colisionLeft()
 {
-    if(angulo<=PRIMER_CUADRANTE & angulo>0){//viene del primer cuadrante
+    if((angulo<=PRIMER_CUADRANTE) & (angulo>0)){//viene del primer cuadrante
        angulo=SEGUNDO_CUADRANTE-angulo;//segundo cuadrante
      }
-     else if(angulo<=CUARTO_CUADRANTE & angulo>TERCER_CUADRANTE){// viene del cuarto cuadrante
+     else if((angulo<=CUARTO_CUADRANTE )& (angulo>TERCER_CUADRANTE)){// viene del cuarto cuadrante
          angulo=angulo+TERCER_CUADRANTE-CUARTO_CUADRANTE;//tercer cuadrante
      }
 }

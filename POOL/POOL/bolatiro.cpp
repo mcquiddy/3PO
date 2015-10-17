@@ -18,7 +18,7 @@ BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(
 
 // bolasound->setMedia(QUrl(TIRO_SOUND));
    escena->addItem(this);
-   fuerza=5;
+   fuerza=10;
    angulo  =120;
    friccion=FRICCION;
    CalFuerza();
@@ -79,10 +79,11 @@ colisionDown();
   else{
   const QGraphicsItem * const other = others[0];
   lista<BolaNegra *> *bolas = List_Bola_Negra;
-  for(int i=1; i<bolas->length();i++){
+  for(int i=1; i<=bolas->length();i++){
   if(((other->x()) ==(bolas->rove(i)->get_data()->getPosx())) & ((other->y()) ==  (bolas->rove(i)->get_data()->getPosy())) ){
       bolas->rove(i)->get_data()->setFuerzaAngule(angulo,fuerza);
       bolas->rove(i)->get_data()->CalFuerza();
+
   if (this->x() <= other->x()){
 
       colisionRight();
@@ -229,10 +230,10 @@ void BolaTiro::colisionUp()
 
 void BolaTiro::colisionLeft()
 {
-    if(angulo<=PRIMER_CUADRANTE & angulo>0){//viene del primer cuadrante
+    if((angulo<=PRIMER_CUADRANTE) & (angulo>0)){//viene del primer cuadrante
        angulo=SEGUNDO_CUADRANTE-angulo;//segundo cuadrante
      }
-     else if(angulo<=CUARTO_CUADRANTE & angulo>TERCER_CUADRANTE){// viene del cuarto cuadrante
+     else if((angulo<=CUARTO_CUADRANTE )& (angulo>TERCER_CUADRANTE)){// viene del cuarto cuadrante
          angulo=angulo+TERCER_CUADRANTE-CUARTO_CUADRANTE;//tercer cuadrante
      }
 }

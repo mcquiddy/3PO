@@ -11,9 +11,9 @@ void connectgui::BolaBlanca(int pX, int pY)
     pool->bola->newBolaBlanca(pX,pY);
 }
 
-void connectgui::BolaNegra(int pId, int pX, int pY)
+void connectgui::BolaNegra( int pX, int pY)
 {
-    pool->bola->newBolaNegra(pId,pX,pY);
+    pool->bola->newBolaNegra(pX,pY);
 }
 
 void connectgui::BolaTiro(int pX, int pY)

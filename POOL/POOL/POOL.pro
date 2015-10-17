@@ -24,7 +24,6 @@ SOURCES +=Poolmain.cpp\
     logicbolablanca.cpp \
     logicbolanegra.cpp \
     logicbolatiro.cpp \
-    qtbouncingball.cpp \
     palo.cpp
 
 HEADERS  += \
@@ -41,7 +40,6 @@ HEADERS  += \
     logicbolablanca.h \
     logicbolanegra.h \
     logicbolatiro.h \
-    qtbouncingball.h \
     palo.h
 
 FORMS    +=

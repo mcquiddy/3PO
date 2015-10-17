@@ -12,7 +12,7 @@ Core::Core()
     LogicBolaNegra * negra= new LogicBolaNegra();
     negra->setId(i);
     List_Bola_Negra.insert_head(negra);
-    connect->BolaNegra(negra->getId(),negra->getPosX(),negra->getPosY());
+    connect->BolaNegra(negra->getPosX(),negra->getPosY());
     }
     //Bola Blanca de Meta
     LogicBolaBlanca * blanca= new LogicBolaBlanca();

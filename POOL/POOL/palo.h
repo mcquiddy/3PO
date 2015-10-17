@@ -16,7 +16,7 @@ class Palo: public QObject,public QGraphicsPixmapItem
     Q_OBJECT
 public:
     Palo(QGraphicsItem * parent=0);
-     void setPosicion(int pX, int pY, int speed);
+     void setPosicion(int pX, int pY);
 private:
     QImage image;
     qreal posX;
@@ -29,7 +29,7 @@ private:
     qreal hipotenusa;
     qreal disparo;
     qreal anguloAux;
-    bool impulso=false;
+
     qreal posXInicial;
     qreal posYInicial;
 

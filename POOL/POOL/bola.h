@@ -23,10 +23,10 @@ class Bola:public QObject
 public:
     Bola(QGraphicsScene *scene);
    void newBolaBlanca(int pX, int pY);
-   void newBolaNegra(int pId, int pX, int pY);
+   void newBolaNegra(int pX, int pY);
    void newBolaTiro(int pX, int pY);
    ///Movimiento de la bola
-   void advance(int phase);
+
    lista<BolaNegra *> *getBolasNegras();
 //   void setPosBolaBlanca(int pX, int pY);
 //   void setPosBolaNegra(int pId,int pX, int pY);

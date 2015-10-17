@@ -16,7 +16,7 @@ Palo::Palo(QGraphicsItem *parent):QObject(),QGraphicsPixmapItem(parent)
 }
 
 
-void Palo::setPosicion(int pX, int pY, int speed){
+void Palo::setPosicion(int pX, int pY){
     double cambioX;
     double cambioY;
 
@@ -34,7 +34,7 @@ void Palo::setPosicion(int pX, int pY, int speed){
 
     hipotenusa=posY/50;
 
-        if ( (disparo+hipotenusa/10)<10 & (disparo+hipotenusa/10)>0 ){
+        if ( ((disparo+hipotenusa/10)<10) & ((disparo+hipotenusa/10)>0) ){
         disparo+=hipotenusa/10;
 
          cout<<disparo<<endl;

@@ -19,6 +19,9 @@ struct BolaNegra : public QGraphicsItem
 
   ///Retorna el canvas de la bola
   QRectF boundingRect() const;
+  lista<BolaNegra * >  * List_Bola_Negra;
+
+ void setListas( lista<BolaNegra * >  * pList_Bola_Negra);
 
   void setSpeedX(double pSx);
   void setSpeedY(double pSy);

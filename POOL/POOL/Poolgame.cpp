@@ -45,7 +45,7 @@ timer->start();
 //    bola->newBolaNegra(1,200,300);
 //    bola->newBolaTiro(300,400);
     show();
-    Analog();
+   // Analog();
 }
 
 Poolgame *Poolgame::getInstance()
@@ -70,11 +70,11 @@ void Poolgame::readSerial()
             x=std::atoi(lista.takeAt(0).toStdString().c_str());
             y=std::atoi(lista.takeAt(0).toStdString().c_str());
             speed=std::atoi(lista.takeAt(0).toStdString().c_str());
-            if(x>=0 & x<=700 & y>=0 & y<=700){
+            if(((x>=0) & (x<=700)) & ((y>=0) & (y<=700))){
                 //cout<<x<<","<<y<<","<<speed<<endl;
 
                 data="";
-                palo->setPosicion(x,y,speed);
+                palo->setPosicion(x,y);
             }
             else{
                cout<< "datos invalidos"<<endl;
