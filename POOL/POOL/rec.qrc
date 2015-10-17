@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/pool.png</file>
+        <file>images/paloPool.png</file>
+        <file>images/bola_tiro.png</file>
+        <file>images/bola_negra.png</file>
+        <file>images/bola_blanca.png</file>
+        <file>tiro.mp3</file>
+        <file>choque.mp3</file>
+        <file>BgSound.mp3</file>
+    </qresource>
+</RCC>

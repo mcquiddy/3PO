@@ -62,8 +62,8 @@ void BolaNegra::advance(int /* phase */)
            colisionUp();
            CalFuerza();
       }
-
-     this->setPos(x() + speed_X, y() + speed_Y);
+    this->setPosicion(x() + speed_X, y() + speed_Y);
+     //this->setPos(x() + speed_X, y() + speed_Y);
 
       //Colision con otro item
 //      const QList<QGraphicsItem *> others = collidingItems();

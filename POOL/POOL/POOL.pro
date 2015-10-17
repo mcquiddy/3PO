@@ -46,7 +46,9 @@ HEADERS  += \
 
 FORMS    +=
 
-RESOURCES += \
-    rec.qrc
+
 
 OTHER_FILES +=
+
+RESOURCES += \
+    rec.qrc

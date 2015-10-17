@@ -30,6 +30,7 @@ Poolgame::Poolgame(QWidget *parent)
     // play music de fondo
     QMediaPlayer * music = new QMediaPlayer();
     music->setMedia(QUrl(WINDOWS_BACKGROUND_SOUND));
+   // music->setMedia(QUrl(TIRO_SOUND));
     music->play();
     bola= new Bola(escena);
     palo=new Palo();
@@ -43,13 +44,8 @@ timer->start();
 //    bola->newBolaBlanca(150,300);
 //    bola->newBolaNegra(1,200,300);
 //    bola->newBolaTiro(300,400);
-
-
-
-
-
     show();
-   // Analog();
+    Analog();
 }
 
 Poolgame *Poolgame::getInstance()

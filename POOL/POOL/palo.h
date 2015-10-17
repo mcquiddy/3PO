@@ -27,10 +27,12 @@ private:
 
 
     qreal hipotenusa;
+    qreal disparo;
     qreal anguloAux;
     bool impulso=false;
-    qreal posXImpulso;
-    qreal aux;
+    qreal posXInicial;
+    qreal posYInicial;
+
 };
 
 #endif // PALO_H

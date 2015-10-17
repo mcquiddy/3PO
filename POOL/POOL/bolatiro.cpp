@@ -16,12 +16,17 @@ BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(
   bolasound = new QMediaPlayer();
 
 
- bolasound->setMedia(QUrl(CHOQUE_SOUND));
+// bolasound->setMedia(QUrl(TIRO_SOUND));
    escena->addItem(this);
-   fuerza=5;
+   fuerza=20;
    angulo  =120;
    friccion=FRICCION;
    CalFuerza();
+
+   playlist =  new QMediaPlaylist();
+   playlist->addMedia(QUrl(TIRO_SOUND));
+   bolasound->setPlaylist(playlist);
+   playlist->setCurrentIndex(-1);
 
 
 }
@@ -97,12 +102,17 @@ colisionDown();
       colisionUp();
        CalFuerza();
   }
-
+  bolasound->pause();
+ bolasound->play();
   break;
  }
 }
 
   this->setPos(x() + speed_X, y() + speed_Y);
+ //bolasound->pause();
+
+
+
 
   }
 

@@ -46,7 +46,7 @@ struct BolaTiro :public QGraphicsItem
   void colisionDown();
   void colisionRight();
   QMediaPlayer * bolasound;
-   QMediaPlaylist * playlist;
+  QMediaPlaylist * playlist;
   private:
 
   ///Velocidad horizontal (delta x)

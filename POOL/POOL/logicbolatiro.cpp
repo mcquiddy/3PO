@@ -7,9 +7,10 @@ LogicBolaTiro::LogicBolaTiro()
     rangeNumberX=0;
     rangeNumberY=0;
     srand((unsigned)time(0));
-    rangeNumberX = (rand() % (BOLA_TIRO_MAX_X-BOLA_TIRO_MIN_X)) + BOLA_TIRO_MIN_X;
+   rangeNumberX = (rand() % (BOLA_TIRO_MAX_X-BOLA_TIRO_MIN_X)) + BOLA_TIRO_MIN_X;
     rangeNumberY = (rand() % (BOLA_TIRO_MAX_Y-BOLA_TIRO_MIN_Y)) + BOLA_TIRO_MIN_Y;
-
+   // rangeNumberX=280;
+   // rangeNumberY=380;
 }
 
 int LogicBolaTiro::getPosX()
