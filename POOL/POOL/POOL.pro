@@ -40,7 +40,9 @@ HEADERS  += \
     logicbolablanca.h \
     logicbolanegra.h \
     logicbolatiro.h \
-    palo.h
+    palo.h \
+    lista_tiro.h \
+    NodeTiro.h
 
 FORMS    +=
 
