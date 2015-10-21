@@ -11,9 +11,12 @@
 
 
 
-BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(parent), escena(scene){
+BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene, int pX, int pY): QGraphicsItem(parent), escena(scene){
   assert(escena && "La inicializacion de una escena deber ser Administrada");
   bolasound = new QMediaPlayer();
+  posXini=pX;
+  posYini=pY;
+
 
 
 // bolasound->setMedia(QUrl(TIRO_SOUND));
@@ -28,6 +31,10 @@ BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(
    bolasound->setPlaylist(playlist);
    playlist->setCurrentIndex(-1);
 
+   posX=pX;
+   posY=pY;
+   this->setPos(posX,posY);
+
 
 }
 
@@ -37,7 +44,10 @@ void BolaTiro::advance(int /* phase */)
 //Menor fuerza debido ala friccion
     fuerza=fuerza-friccion;
 
- if(fuerza<=0)return;
+ if(fuerza<=0){
+     this->setPosicion(posXini,posYini);
+     return;
+ }
 
 
 //para actualizar los angulos la formula es

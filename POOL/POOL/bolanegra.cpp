@@ -9,19 +9,26 @@
 //#include <Poolgame.h>
 //extern Poolgame * juego;
 
-BolaNegra::BolaNegra(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(parent),speed_X(0.0), speed_Y(0.0), escena(scene){
+BolaNegra::BolaNegra(QGraphicsItem *parent, QGraphicsScene *scene, int pX, int pY): QGraphicsItem(parent),speed_X(0.0), speed_Y(0.0), escena(scene){
   assert(escena && "La inicializacion de una escena deber ser Administrada");
   bolasound = new QMediaPlayer();
+  posXini=pX;
+  posYini=pY;
 
- playlist = new QMediaPlaylist();
 
- playlist->addMedia(QUrl(CHOQUE_SOUND));
- bolasound->setPlaylist( playlist );
+ playlist =  new QMediaPlaylist();
+ playlist->addMedia(QUrl(TIRO_SOUND));
+ bolasound->setPlaylist(playlist);
+ playlist->setCurrentIndex(-1);
 
    escena->addItem(this);
    fuerza=0;
    angulo=0;
    friccion=FRICCION;
+
+   posX=pX;
+   posY=pY;
+   this->setPos(posX,posY);
 
 }
 
@@ -30,9 +37,10 @@ void BolaNegra::advance(int /* phase */)
     //Menor fuerza debido ala friccion
         fuerza=fuerza-friccion;
 
-     if(fuerza<=0)return;
-
-
+     if(fuerza<=0){
+         this->setPosicion(posXini,posYini);
+         return;
+     }
     //para actualizar los angulos la formula es
       // 4,3 y 2 caudrante= angulo + angulo del cuadrante donde quiere llegar -  angulo cudrante donde esta
       // 1 cuadrante = angulo donde quiere llegar - angulo

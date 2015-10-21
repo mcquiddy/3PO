@@ -12,7 +12,7 @@ struct QGraphicsScene;
 
 struct BolaNegra : public QGraphicsItem
 {
-  BolaNegra(QGraphicsItem *parent, QGraphicsScene *scene);
+  BolaNegra(QGraphicsItem *parent, QGraphicsScene *scene, int pX, int pY);
 
   ///Movimiento de la bola
   void advance(int phase);
@@ -54,6 +54,8 @@ int getPosy();
 
   int posX;
   int posY;
+  int posXini;
+  int posYini;
   qreal angulo;
   double fuerza;
   double friccion;

@@ -12,7 +12,7 @@ struct QGraphicsScene;
 
 struct BolaBlanca : public QGraphicsItem
 {
-  BolaBlanca(QGraphicsItem *parent, QGraphicsScene *scene);
+  BolaBlanca(QGraphicsItem *parent, QGraphicsScene *scene,int pX,int pY);
 
   ///Movimiento de la bola
   void advance(int phase);
@@ -46,6 +46,8 @@ struct BolaBlanca : public QGraphicsItem
   QGraphicsScene * const escena;
   int posX;
   int posY;
+  int posXini;
+  int posYini;
 };
 
 

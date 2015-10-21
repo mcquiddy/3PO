@@ -36,7 +36,7 @@ const int BOLA_MIN_X=105;
 const int BOLA_MAX_Y=495;
 const int BOLA_MIN_Y=100;
 
-const  double FRICCION=0.01;
+const  double FRICCION=0.02;
 const int TOTAL_BOLA_NEGRA=10;
 const int PRIMER_CUADRANTE=90;
 const int SEGUNDO_CUADRANTE=180;

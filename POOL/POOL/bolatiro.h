@@ -21,7 +21,7 @@ struct BolaTiro :public QGraphicsItem
 {
 
 
-  BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene);
+  BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene,int pX, int pY);
   lista<BolaNegra * >  * List_Bola_Negra;
   lista<BolaBlanca * > *  List_Bola_Blanca;
   ///Movimiento de la bola
@@ -60,6 +60,8 @@ struct BolaTiro :public QGraphicsItem
   QGraphicsScene * const escena;
   int posX;
   int posY;
+  int posXini;
+  int posYini;
 ////Calcular los movimiento y las fuerzas
 
   qreal angulo;

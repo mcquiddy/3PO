@@ -6,38 +6,28 @@
 #include <QPainter>
 #include "bolablanca.h"
 
-BolaBlanca::BolaBlanca(QGraphicsItem *parent, QGraphicsScene *scene): QGraphicsItem(parent),speed_X(0.0), speed_Y(0.0), escena(scene){
+BolaBlanca::BolaBlanca(QGraphicsItem *parent, QGraphicsScene *scene, int pX, int pY): QGraphicsItem(parent),speed_X(0.0), speed_Y(0.0), escena(scene){
   assert(escena && "La inicializacion de una escena deber ser Administrada");
    escena->addItem(this);
+   posXini=pX;
+   posYini=pY;
+
    bolasound = new QMediaPlayer();
 
   playlist = new QMediaPlaylist();
 
-  playlist->addMedia(QUrl(CHOQUE_SOUND));
-  bolasound->setPlaylist( playlist );
+
+
+  posX=pX;
+  posY=pY;
+  this->setPos(posX,posY);
 
 
 }
 
 void BolaBlanca::advance(int /* phase */)
 {
-  //Colision contra los bordes de la escena
-  if (x() + speed_X + (boundingRect().width() * 0.5) > BOLA_MAX_X) speed_X = -std::abs(speed_X);
-  else if (x() + speed_X - (boundingRect().width() * 0.5) < BOLA_MIN_X) speed_X = std::abs(speed_X);
-  if (y() + speed_Y + (boundingRect().height() * 0.5) > BOLA_MAX_Y) speed_Y = -std::abs(speed_Y);
-  else if (y() + speed_Y - (boundingRect().width() * 0.5) < BOLA_MIN_Y) speed_Y = std::abs(speed_Y);
-  this->setPos(x() + speed_X, y() + speed_Y);
 
-  //Colision con otro item
-  const QList<QGraphicsItem *> others = collidingItems();
-  if (others.isEmpty()) return;
-  const QGraphicsItem * const other = others[0];
-  if (this->x() < other->x()) speed_X = -std::abs(speed_X);
-  else if (this->x() > other->x()) speed_X =  std::abs(speed_X);
-  if (this->y() < other->y()) speed_Y = -std::abs(speed_Y);
-  else if (this->y() > other->y()) speed_Y =  std::abs(speed_Y);
-  this->setPos(x() + speed_X, y() + speed_Y);
-  this->setPos(x() + speed_X, y() + speed_Y);
 
 }
 
