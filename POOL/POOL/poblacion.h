@@ -22,6 +22,7 @@ private:
     tiro *  crossover(tiro *padre,tiro *madre);
 
 
+
 public:
     void newGeneration();
     lista<tiro *> *fitness(lista<tiro*> *antepasados);

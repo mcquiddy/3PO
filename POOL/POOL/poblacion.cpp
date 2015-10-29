@@ -43,7 +43,6 @@ tiro *Poblacion::crossover(tiro *padre, tiro *madre)
 void Poblacion::newGeneration()
 {
     lista<tiro*> *newGeneracion=new lista<tiro*>();
-
     if(genActual==0){
         for(int i=0;i<4;i++){
             tiro* newTiro=new tiro(contadorId,genActual);
@@ -57,13 +56,13 @@ void Poblacion::newGeneration()
         genActual++;
     }
     else{
-        Node<tiro*> *tempPapa=fitness(generaciones.get_tail())->get_head()->get_data();
+        Node<tiro*> *tempPapa=(fitness(generaciones.get_tail()->get_data()))->get_head();
         while(tempPapa->get_next()!=NULL)
         {
             Node<tiro*> *tempMama=tempPapa->get_next();
             while(tempMama!=NULL)
             {
-                tiro *newTiro=crossover(tempPapa,tempMama);
+                tiro *newTiro=crossover(tempPapa->get_data(),tempMama->get_data());
                 newGeneracion->insert_tail(newTiro);
                 while(flag_nacimiento){
                        usleep(800);
@@ -74,8 +73,7 @@ void Poblacion::newGeneration()
             tempPapa=tempPapa->get_next();
         }
     }
-    if()
-        generaciones.insert_tail(newGeneracion);
+    generaciones.insert_tail(newGeneracion);
 }
 
 lista<tiro *> *Poblacion::fitness(lista<tiro *> *antepasados)
@@ -117,12 +115,13 @@ lista<tiro *> *Poblacion::fitness(lista<tiro *> *antepasados)
         }
             temp=temp->get_next();
             swap=temp->get_next();
+        }
 
     }
     temp=antepasados->get_head();
     lista<tiro*> *Aptos=new lista<tiro*>();
     for(int i=0;i<4;i++){
-        Aptos->insert_tail(temp);
+        Aptos->insert_tail(temp->get_data());
         temp=temp->get_next();
     }
     return Aptos;

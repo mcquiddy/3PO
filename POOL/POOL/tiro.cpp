@@ -24,7 +24,7 @@ int tiro::get_angulo()
 
 int tiro::get_fuerza()
 {
-    return this-fuerza;
+    return this->fuerza;
 }
 
 tiro::tiro(tiro *mama, tiro *papa, int angulo, int fuerza, int id, int generacion)

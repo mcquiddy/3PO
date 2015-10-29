@@ -2,7 +2,7 @@
 #include <QApplication>
 #include <iostream>
 //#include "Poolgame.h"
-
+#include "poblacion.h"
 #include "core.h"
 using namespace std;
 //Poolgame *game;
@@ -14,5 +14,7 @@ int main(int argc, char *argv[])
 //     game = new Poolgame();
 //     game->show();
      core = new Core();
+     Poblacion Aldeanos;
+
     return a.exec();
 }

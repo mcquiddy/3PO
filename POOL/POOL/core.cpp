@@ -25,6 +25,7 @@ Core::Core()
 
 
 
+
 }
 
 lista<LogicBolaNegra *> Core::get_list_bolaNegra()
