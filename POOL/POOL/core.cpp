@@ -26,3 +26,18 @@ Core::Core()
 
 
 }
+
+lista<LogicBolaNegra *> Core::get_list_bolaNegra()
+{
+    return this->List_Bola_Negra;
+}
+
+lista<LogicBolaBlanca *> Core::get_list_bolaBlanca()
+{
+    return this->List_Bola_Blanca;
+}
+
+lista<LogicBolaTiro *> Core::get_list_bolaTiro()
+{
+    return this->List_Bola_Tiro;
+}

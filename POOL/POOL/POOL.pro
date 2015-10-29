@@ -24,7 +24,9 @@ SOURCES +=Poolmain.cpp\
     logicbolablanca.cpp \
     logicbolanegra.cpp \
     logicbolatiro.cpp \
-    palo.cpp
+    palo.cpp \
+    poblacion.cpp \
+    tiro.cpp
 
 HEADERS  += \
     Poolgame.h \
@@ -42,7 +44,9 @@ HEADERS  += \
     logicbolatiro.h \
     palo.h \
     lista_tiro.h \
-    NodeTiro.h
+    NodeTiro.h \
+    poblacion.h \
+    tiro.h
 
 FORMS    +=
 

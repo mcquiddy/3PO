@@ -222,9 +222,9 @@ void BolaTiro::CalFuerza()
  }
 }
 
-void BolaTiro::setFuerzaAngule(qreal pAngulo, double pFuerza)
+void BolaTiro::setFuerzaAngule(qreal pAngulo, int pFuerza)
 {
-    fuerza=pFuerza;
+    fuerza=(double)pFuerza;
     angulo=pAngulo;
 }
 

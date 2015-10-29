@@ -10,8 +10,6 @@ Bola::Bola(QGraphicsScene *scene):  escena(scene)
 
 }
 
-
-
 void Bola::newBolaBlanca(int pX, int pY)
 {
      BolaBlanca * blanca= new BolaBlanca(0,escena,pX,pY);
@@ -37,6 +35,11 @@ void Bola::newBolaTiro(int pX, int pY)
     tiro->setListas(&List_Bola_Negra, &List_Bola_Blanca);
 
     List_Bola_Tiro.insert_head(tiro);
+}
+
+void Bola::nuevoTiro(int fuerza, int angulo)
+{
+    List_Bola_Tiro.get_head()->get_data()->setFuerzaAngule(angulo,fuerza);
 }
 
 

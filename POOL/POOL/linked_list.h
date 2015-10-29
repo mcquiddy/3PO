@@ -27,8 +27,9 @@ public:
     Node<T>* rove(int x);
     Node<T>* get_head();
     Node<T>* get_tail();
-    int length();
     T* serch(T data);
+    int length();
+    bool isEmpty();
 	void print_list();
     lista();
     virtual ~lista();
@@ -83,7 +84,7 @@ void lista<T>::insert_tail(T new_data){
 		Node<T>* temp=this->tail;
 		temp->set_next(newNode);
 		newNode->set_prev(temp);
-		tail=newNode;
+		this->tail=newNode;
 	}
     this->Length++;
 }
@@ -283,6 +284,21 @@ template<typename T>
  */
 int lista<T>::length(){
     return Length;
+}
+
+template<typename T>
+/**
+ * @brief lista<T>::isEmpty
+ * @return
+ */
+bool lista<T>::isEmpty()
+{
+   if(this->Length==0){
+       return true;
+   }
+   else{
+       return false;
+   }
 }
 
 template<typename T>

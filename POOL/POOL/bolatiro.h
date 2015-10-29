@@ -40,7 +40,7 @@ struct BolaTiro :public QGraphicsItem
   ///Pinta la bola
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
   void CalFuerza();
-  void setFuerzaAngule(qreal pAngulo,double pFuerza);
+  void setFuerzaAngule(qreal pAngulo, int pFuerza);
   void colisionUp();
   void colisionLeft();
   void colisionDown();

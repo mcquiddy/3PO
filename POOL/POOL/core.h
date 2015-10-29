@@ -7,6 +7,8 @@
 #include "logicbolanegra.h"
 #include "logicbolablanca.h"
 #include "logicbolatiro.h"
+#include "poblacion.h"
+
 class Core
 {
 public:
@@ -15,6 +17,9 @@ public:
     lista<LogicBolaTiro * >   List_Bola_Tiro;
     lista<LogicBolaBlanca * >   List_Bola_Blanca;
     connectgui * connect;
+    lista<LogicBolaNegra *> get_list_bolaNegra();
+    lista<LogicBolaBlanca * > get_list_bolaBlanca();
+    lista<LogicBolaTiro * > get_list_bolaTiro();
 };
 
 #endif // CORE_H

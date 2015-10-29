@@ -21,3 +21,8 @@ void connectgui::BolaTiro(int pX, int pY)
     pool->bola->newBolaTiro(pX,pY);
 }
 
+void connectgui::nuevoTiro(int fuerza, int angulo)
+{
+    pool->bola->nuevoTiro(fuerza,angulo);
+}
+
