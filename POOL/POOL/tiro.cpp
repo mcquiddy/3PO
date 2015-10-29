@@ -1,14 +1,15 @@
 #include "tiro.h"
 
 
-tiro::tiro(int id, int generacion)
+tiro::tiro(int id, int generacion, connectgui *pfacade)
 {
     this->angulo=rand()%360 +1;
     this->fuerza= rand()%15 +1;
     this->generacion=generacion;
+    this->facade=pfacade;
     padre=NULL;
     madre=NULL;
-    facade.nuevoTiro(fuerza,angulo);
+    facade->nuevoTiro(10,120);
     
 }
 
@@ -35,7 +36,7 @@ tiro::tiro(tiro *mama, tiro *papa, int angulo, int fuerza, int id, int generacio
     this->fuerza=fuerza;
     this->generacion=generacion;
     this->id=id;
-    facade.nuevoTiro(fuerza,angulo);
+   // facade.nuevoTiro(fuerza,angulo);
 }
 
 

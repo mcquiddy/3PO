@@ -39,6 +39,7 @@ Poolgame::Poolgame(QWidget *parent)
 QTimer * const timer = new QTimer(this);
 QObject::connect(timer,SIGNAL(timeout()),escena,SLOT(advance()));
 timer->setInterval(20);
+
 timer->start();
 
 //    bola->newBolaBlanca(150,300);

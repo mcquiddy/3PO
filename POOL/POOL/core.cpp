@@ -7,6 +7,8 @@ using namespace std;
 Core::Core()
 {
     connect = new connectgui();
+    Aldeanos = new Poblacion(connect);
+
     //Bolas Negras
     for(int i=0; i<TOTAL_BOLA_NEGRA;i++){
     LogicBolaNegra * negra= new LogicBolaNegra();
@@ -21,7 +23,13 @@ Core::Core()
     //Bola del jugador
     LogicBolaTiro * tiro= new LogicBolaTiro();
     List_Bola_Tiro.insert_head(tiro);
-    connect->BolaTiro(tiro->getPosX(),tiro->getPosY());
+   connect->BolaTiro(tiro->getPosX(),tiro->getPosY());
+   //connect->nuevoTiro(10,120);
+
+   this->moveToThread(&workerThread);
+      QObject::connect(&workerThread, SIGNAL(started()), Aldeanos, SLOT(newGeneration()));
+                   workerThread.start();
+
 
 
 

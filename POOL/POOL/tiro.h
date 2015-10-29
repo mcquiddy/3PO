@@ -16,12 +16,12 @@ private:
     
     tiro* padre;
     tiro* madre;
-    connectgui facade;
+    connectgui * facade;
     
 
 public:
     tiro(tiro* mama, tiro* papa, int angulo, int fuerza, int id, int generacion);
-    tiro(int id,int generacion);
+    tiro(int id,int generacion,connectgui * pfacade);
     void mutacion();
     void inversion();
     void set_distancia(int distancia);

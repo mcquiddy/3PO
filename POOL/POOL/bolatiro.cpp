@@ -21,8 +21,7 @@ BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene, int pX, int pY)
 
 // bolasound->setMedia(QUrl(TIRO_SOUND));
    escena->addItem(this);
-   fuerza=10;
-   angulo  =120;
+
    friccion=FRICCION;
    CalFuerza();
 
@@ -226,6 +225,7 @@ void BolaTiro::setFuerzaAngule(qreal pAngulo, int pFuerza)
 {
     fuerza=(double)pFuerza;
     angulo=pAngulo;
+    cout<<" fuerza seteada "<<endl;
 }
 
 void BolaTiro::colisionUp()

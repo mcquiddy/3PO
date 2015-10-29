@@ -42,38 +42,40 @@ tiro *Poblacion::crossover(tiro *padre, tiro *madre)
 
 void Poblacion::newGeneration()
 {
+
+    cout<<"hola "<<endl;
     lista<tiro*> *newGeneracion=new lista<tiro*>();
     if(genActual==0){
-        for(int i=0;i<4;i++){
-            tiro* newTiro=new tiro(contadorId,genActual);
+        for(int i=0;i<1;i++){
+            tiro* newTiro=new tiro(contadorId,genActual,facade);
             newGeneracion->insert_tail(newTiro);
-            while(flag_nacimiento){
-                usleep(800);
-            }
+
+            usleep(5000);
+
             flag_nacimiento=true;
             contadorId++;
         }
         genActual++;
     }
-    else{
-        Node<tiro*> *tempPapa=(fitness(generaciones.get_tail()->get_data()))->get_head();
-        while(tempPapa->get_next()!=NULL)
-        {
-            Node<tiro*> *tempMama=tempPapa->get_next();
-            while(tempMama!=NULL)
-            {
-                tiro *newTiro=crossover(tempPapa->get_data(),tempMama->get_data());
-                newGeneracion->insert_tail(newTiro);
-                while(flag_nacimiento){
-                       usleep(800);
-                }
-                flag_nacimiento=true;
-                tempMama=tempMama->get_next();
-            }
-            tempPapa=tempPapa->get_next();
-        }
-    }
-    generaciones.insert_tail(newGeneracion);
+//    else{
+//        Node<tiro*> *tempPapa=(fitness(generaciones.get_tail()->get_data()))->get_head();
+//        while(tempPapa->get_next()!=NULL)
+//        {
+//            Node<tiro*> *tempMama=tempPapa->get_next();
+//            while(tempMama!=NULL)
+//            {
+//                tiro *newTiro=crossover(tempPapa->get_data(),tempMama->get_data());
+//                newGeneracion->insert_tail(newTiro);
+//                while(flag_nacimiento){
+//                       usleep(800);
+//                }
+//                flag_nacimiento=true;
+//                tempMama=tempMama->get_next();
+//            }
+//            tempPapa=tempPapa->get_next();
+//        }
+//    }
+   // generaciones.insert_tail(newGeneracion);
 }
 
 lista<tiro *> *Poblacion::fitness(lista<tiro *> *antepasados)
@@ -127,11 +129,13 @@ lista<tiro *> *Poblacion::fitness(lista<tiro *> *antepasados)
     return Aptos;
 }
 
-Poblacion::Poblacion()
+Poblacion::Poblacion(connectgui *pfacade)
 {
     this->flag_nacimiento=true;
     this->genActual=0;
     this->contadorId=0;
+    this->facade=pfacade;
+
 }
 
 

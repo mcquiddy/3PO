@@ -34,6 +34,7 @@ void Bola::newBolaTiro(int pX, int pY)
 
     tiro->setListas(&List_Bola_Negra, &List_Bola_Blanca);
 
+
     List_Bola_Tiro.insert_head(tiro);
 }
 
