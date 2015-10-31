@@ -43,7 +43,7 @@ struct BolaTiro :public QGraphicsItem
   ///Pinta la bola
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
   void CalFuerza();
-  void setFuerzaAngule(qreal pAngulo, int pFuerza);
+  void setFuerzaAngule(qreal pAngulo, int pFuerza,bool pTiro);
   void colisionUp();
   void colisionLeft();
   void colisionDown();
@@ -52,7 +52,7 @@ struct BolaTiro :public QGraphicsItem
   QMediaPlaylist * playlist;
   connectLogic *  facade;
   private:
-
+  bool flag_tiro_type;
   ///Velocidad horizontal (delta x)
   double speed_X;
 

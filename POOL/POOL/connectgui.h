@@ -20,8 +20,9 @@ public slots:
     void BolaBlanca(int pX, int pY);
     void BolaNegra(int pX, int pY);
     void BolaTiro(int pX, int pY);
-    void nuevoTiro(int fuerza, int angulo);
+    void nuevoTiro(int fuerza, int angulo,bool pTiro);
     void GameOver();
+    void addPalo(int pPosx,int pPosy);
 
 //    void setPosBolaBlanca(int pX, int pY);
 //    void setPosBolaNegra(int pId,int pX, int pY);

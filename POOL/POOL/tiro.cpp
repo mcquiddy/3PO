@@ -10,7 +10,7 @@ tiro::tiro(int id, int generacion, connectgui *pfacade)
     padre=NULL;
     madre=NULL;
     cout<<" fuerza "<<fuerza<<" angulo "<<angulo<<endl;
-    facade->nuevoTiro(fuerza,angulo);
+    facade->nuevoTiro(fuerza,angulo,true);
     
 }
 
@@ -38,7 +38,7 @@ tiro::tiro(tiro *mama, tiro *papa, int angulo, int fuerza, int id, int generacio
     this->generacion=generacion;
     this->id=id;
     this->facade=pfacade;
-    facade->nuevoTiro(fuerza,angulo);
+    facade->nuevoTiro(fuerza,angulo,true);
 }
 
 

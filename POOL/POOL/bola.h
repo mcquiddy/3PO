@@ -25,7 +25,7 @@ public:
    void newBolaBlanca(int pX, int pY);
    void newBolaNegra(int pX, int pY);
    void newBolaTiro(int pX, int pY);
-   void nuevoTiro(int fuerza, int angulo);
+   void nuevoTiro(int fuerza, int angulo,bool pTiro);
    ///Movimiento de la bola
 
    lista<BolaNegra *> *getBolasNegras();

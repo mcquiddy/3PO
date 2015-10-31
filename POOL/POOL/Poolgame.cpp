@@ -31,8 +31,8 @@ Poolgame::Poolgame(QWidget *parent){
      music->play();
 
      bola= new Bola(escena);
-     palo=new Palo();
-     escena->addItem(palo);
+
+
     ///movimiento de las bolas
      QTimer * const timer = new QTimer(this);
      QObject::connect(timer,SIGNAL(timeout()),escena,SLOT(advance()));
@@ -43,9 +43,9 @@ Poolgame::Poolgame(QWidget *parent){
 //    bola->newBolaBlanca(150,300);
 //    bola->newBolaNegra(1,200,300);
 //    bola->newBolaTiro(300,400);
-
+    Analog();
     show();
-    //Analog();
+
 }
 /**
  * @brief Poolgame::getInstance
@@ -61,7 +61,13 @@ Poolgame *Poolgame::getInstance()
 
 void Poolgame::GameOver()
 {
-     QMessageBox::information(this, "FINALIZADO!","La Bola Roja a Chocado con la Bola Blanca");
+    QMessageBox::information(this, "FINALIZADO!","La Bola Roja a Chocado con la Bola Blanca");
+}
+
+void Poolgame::addPalo(int pPosx, int pPosy)
+{
+    palo=new Palo(0,pPosx,pPosy,bola);
+    escena->addItem(palo);
 }
 
 /**
@@ -83,11 +89,11 @@ void Poolgame::readSerial()
         if(lista.length()==3){
             x=std::atoi(lista.takeAt(0).toStdString().c_str());
             y=std::atoi(lista.takeAt(0).toStdString().c_str());
-            speed=std::atoi(lista.takeAt(0).toStdString().c_str());
+            button=std::atoi(lista.takeAt(0).toStdString().c_str());
             if(((x>=0) & (x<=700)) & ((y>=0) & (y<=700))){
                 //cout<<x<<","<<y<<","<<speed<<endl;
                 data="";
-                palo->setPosicion(x,y);
+                palo->setPosicion(x,y,button);
             }
             else{
                cout<< "datos invalidos"<<endl;

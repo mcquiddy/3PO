@@ -38,9 +38,9 @@ void Bola::newBolaTiro(int pX, int pY)
     List_Bola_Tiro.insert_head(tiro);
 }
 
-void Bola::nuevoTiro(int fuerza, int angulo)
+void Bola::nuevoTiro(int fuerza, int angulo, bool pTiro)
 {
-    List_Bola_Tiro.get_head()->get_data()->setFuerzaAngule(angulo,fuerza);
+    List_Bola_Tiro.get_head()->get_data()->setFuerzaAngule(angulo,fuerza,pTiro);
 }
 
 

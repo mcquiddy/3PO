@@ -9,17 +9,17 @@
 #include <Poolconstants.h>
 #include <iostream>
 #include "qmath.h"
+#include "bola.h"
 using namespace std;
 class Palo: public QObject,public QGraphicsPixmapItem
 {
 
     Q_OBJECT
 public:
-    Palo(QGraphicsItem * parent=0);
+    Palo(QGraphicsItem * parent, int pPosX, int pPosY,Bola * pBola);
 
-     void setPosicion(int pX, int pY, int speed);
-
-void setPosicion(int pX, int pY);
+     void setPosicion(int pX, int pY, int button);
+Bola * bola;
 
 private:
     QImage image;
@@ -28,6 +28,8 @@ private:
     //qreal angulo;
     qreal posPaloX;
     qreal posPaloY;
+    qreal posPaloXIni;
+    qreal posPaloYIni;
      double rad = 1;
     double a,b;
 

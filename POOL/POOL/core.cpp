@@ -61,6 +61,7 @@ void Core::newGame()
     LogicBolaTiro * tiro= new LogicBolaTiro();
     List_Bola_Tiro.insert_head(tiro);
    connect->BolaTiro(tiro->getPosX(),tiro->getPosY());
+   connect->addPalo(tiro->getPosX()+12,tiro->getPosY()+8);
    //connect->nuevoTiro(10,120);
 
 }

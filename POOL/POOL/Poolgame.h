@@ -31,6 +31,7 @@ public:
     Poolgame(QWidget *parent = 0);
     int x;//eje x del arduino
     int y;//eje y del arduino
+    int button;//valor button
     int speed;//fuerza con que se dispara la bola
     QGraphicsScene *   escena;
     Bola * bola;
@@ -38,6 +39,7 @@ public:
     QPoint pos;
     static Poolgame* getInstance();
     void GameOver();
+    void addPalo(int pPosx,int pPosy);
 
 private slots:
     void readSerial();
@@ -56,6 +58,8 @@ private:
 
 
 };
+
+
 
 
 #endif // POOLGAME_H

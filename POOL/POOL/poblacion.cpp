@@ -32,6 +32,26 @@ tiro *Poblacion::crossover(tiro *padre, tiro *madre)
             }
         }
     }
+    int mutacion=rand()%100;
+    int inversion=rand()%100;
+    if(mutacion==this->proba_mutacion||(hijoFuerza.to_ulong()==papaFuerza.to_ulong()&&hijoAngulo.to_ulong()==papaAngulo.to_ulong())){
+        cout<<"Mutacion"<<endl;
+        int indice=rand()%12;
+        if(hijoAngulo[indice]==1){hijoAngulo[indice]=0;}
+        else {hijoAngulo[indice]=1;}
+        if(hijoFuerza[indice]==1){hijoFuerza[indice]=0;}
+        else {hijoFuerza[indice]=1;}
+    }
+    if(inversion==this->proba_inversion){
+        for(int i=0;i<12;i++){
+            if(hijoAngulo[i]==1){hijoAngulo[i]=0;}
+            else {hijoAngulo[i]=1;}
+            if(hijoFuerza[i]==1){hijoFuerza[i]=0;}
+            else {hijoFuerza[i]=1;}
+
+        }
+    }
+
 
     int angulo=(int)hijoAngulo.to_ulong();
     int fuerza=(int)hijoFuerza.to_ulong();
@@ -116,6 +136,8 @@ Poblacion::Poblacion(connectgui *pfacade)
     this->genActual=0;
     this->contadorId=0;
     this->distancia=0;
+    this->proba_inversion=rand()%100;
+    this->proba_mutacion=rand()%100;
     this->facade=pfacade;
 
 }

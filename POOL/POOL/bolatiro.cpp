@@ -113,9 +113,12 @@ colisionDown();
 
 
        flagNewTiro=false;
-       facade->GameOver();
+       this->setPosicion(posXini,posYini);
+       return;
+      // facade->GameOver();
 
       }
+   else{
   if(((other->x()) ==(bolas->rove(i)->get_data()->getPosx())) & ((other->y()) ==  (bolas->rove(i)->get_data()->getPosy())) ){
       bolas->rove(i)->get_data()->setFuerzaAngule(angulo,fuerza);
       bolas->rove(i)->get_data()->CalFuerza();
@@ -143,6 +146,7 @@ colisionDown();
  bolasound->play();
   break;
  }
+  }
 }
 
   this->setPos(x() + speed_X, y() + speed_Y);
@@ -248,12 +252,13 @@ void BolaTiro::CalFuerza()
  }
 }
 
-void BolaTiro::setFuerzaAngule(qreal pAngulo, int pFuerza)
+void BolaTiro::setFuerzaAngule(qreal pAngulo, int pFuerza, bool pTiro)
 {
     this->fuerza=(double)pFuerza;
     this->angulo=pAngulo;
+    this->flagNewTiro=pTiro;
      CalFuerza();
-     flagNewTiro=true;
+
     //cout<<" fuerza seteada "<<this->fuerza<<endl;
 }
 
