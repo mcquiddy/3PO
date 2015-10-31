@@ -61,7 +61,9 @@ void Node<T>::set_prev(Node<T>* new_prev_node){
 }
 template<typename T>
 T Node<T>::get_data(){
-	return this->data;
+    return this->data;
 }
+
+
 #endif /* NODO_H_ */
 

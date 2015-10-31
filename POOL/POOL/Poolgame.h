@@ -37,6 +37,8 @@ public:
     Palo *palo;
     QPoint pos;
     static Poolgame* getInstance();
+    void GameOver();
+
 private slots:
     void readSerial();
     void Analog();
@@ -46,8 +48,8 @@ private:
 
     static Poolgame* unicPool;
     QSerialPort *arduino;
-    static const quint16 arduino_uno_vendor_id = 9025;
-    static const quint16 arduino_uno_product_id = 66;
+    static const quint16 vendor_id = 9025;
+    static const quint16 productId = 66;
     QByteArray serialData;//bytes de datos recibidos por arduino
     QString data;//bytes recibidos del arduino se convierten en qstring
 

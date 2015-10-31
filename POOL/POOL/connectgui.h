@@ -7,6 +7,7 @@
 #include <cstdio>
 #include <cstdlib>
 using namespace std;
+
 class connectgui
 {
 
@@ -20,6 +21,7 @@ public slots:
     void BolaNegra(int pX, int pY);
     void BolaTiro(int pX, int pY);
     void nuevoTiro(int fuerza, int angulo);
+    void GameOver();
 
 //    void setPosBolaBlanca(int pX, int pY);
 //    void setPosBolaNegra(int pId,int pX, int pY);

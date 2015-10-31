@@ -13,7 +13,10 @@
 #include <QMediaPlayer>
 #include <QSound>
 #include <QMediaPlaylist>
+#include "connectlogic.h"
+
 using namespace std;
+
 struct QGraphicsScene;
 
 struct BolaTiro :public QGraphicsItem
@@ -47,6 +50,7 @@ struct BolaTiro :public QGraphicsItem
   void colisionRight();
   QMediaPlayer * bolasound;
   QMediaPlaylist * playlist;
+  connectLogic *  facade;
   private:
 
   ///Velocidad horizontal (delta x)
@@ -62,11 +66,13 @@ struct BolaTiro :public QGraphicsItem
   int posY;
   int posXini;
   int posYini;
+  bool flagNewTiro;
 ////Calcular los movimiento y las fuerzas
 
   qreal angulo;
   double fuerza;
   double friccion;
+
 };
 
 

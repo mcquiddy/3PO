@@ -20,7 +20,7 @@ private:
     
 
 public:
-    tiro(tiro* mama, tiro* papa, int angulo, int fuerza, int id, int generacion);
+    tiro(tiro* mama, tiro* papa, int angulo, int fuerza, int id, int generacion, connectgui *pfacade);
     tiro(int id,int generacion,connectgui * pfacade);
     void mutacion();
     void inversion();

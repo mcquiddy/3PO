@@ -15,11 +15,19 @@ public:
     Poblacion(connectgui * pfacade);
 private:
     int contadorId;
+    int count;
     int num_generaciones;
     int proba_mutacion;
     int proba_inversion;
+    int distancia;
     connectgui * facade;
     bool flag_nacimiento;
+    bool flag_newCrossover;
+    void newTiro();
+    Node<tiro*> *PapaActual;
+    Node<tiro*> *MamaActual;
+
+
     int genActual;
         lista<lista<tiro*>*> generaciones;
         lista<tiro *> *fitness(lista<tiro*> *antepasados);
@@ -31,6 +39,7 @@ private:
 
 public slots:
   void newGeneration();
+  void setDistancia(int pDistancia);
 
 };
 

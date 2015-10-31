@@ -7,7 +7,7 @@
 #include <QPainter>
 #include <math.h>
 
-
+#include <QMessageBox>
 
 
 
@@ -16,15 +16,18 @@ BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene, int pX, int pY)
   bolasound = new QMediaPlayer();
   posXini=pX;
   posYini=pY;
-
+flagNewTiro=false;
+  facade=new connectLogic();
 
 
 // bolasound->setMedia(QUrl(TIRO_SOUND));
    escena->addItem(this);
 
    friccion=FRICCION;
-   CalFuerza();
 
+  fuerza=0;
+  angulo=0;
+   CalFuerza();
    playlist =  new QMediaPlaylist();
    playlist->addMedia(QUrl(TIRO_SOUND));
    bolasound->setPlaylist(playlist);
@@ -34,7 +37,7 @@ BolaTiro::BolaTiro(QGraphicsItem *parent, QGraphicsScene *scene, int pX, int pY)
    posY=pY;
    this->setPos(posX,posY);
 
-
+cout<<"primero "<<endl;
 }
 
 void BolaTiro::advance(int /* phase */)
@@ -43,8 +46,23 @@ void BolaTiro::advance(int /* phase */)
 //Menor fuerza debido ala friccion
     fuerza=fuerza-friccion;
 
+
  if(fuerza<=0){
-     this->setPosicion(posXini,posYini);
+
+
+     if(flagNewTiro){
+
+
+         double pX=(List_Bola_Blanca->get_head()->get_data()->getPosx() )-this->x();
+         double pY=(List_Bola_Blanca->get_head()->get_data()->getPosy() )-this->y();
+
+         double sumaCuadrados=pow(pX,2)+pow(pY,2);
+
+         int distancia=sqrt(sumaCuadrados);
+         flagNewTiro=false;
+         facade->setDistancia(distancia);
+     }
+         this->setPosicion(posXini,posYini);
      return;
  }
 
@@ -58,6 +76,7 @@ void BolaTiro::advance(int /* phase */)
 
      colisionRight();
       CalFuerza();
+
 
   }
   else if (x() + speed_X - (boundingRect().width() * 0.5) < BOLA_MIN_X){
@@ -80,7 +99,7 @@ colisionDown();
   }
 
  this->setPos(x() + speed_X, y() + speed_Y);
-
+//cout<<"disminuyo"<<x()<<" "<<y()<<" speed_x "<<speed_X<<" speed_y "<<speed_Y<<endl;
   //Colision con otro item
   const QList<QGraphicsItem *> others = collidingItems();
 
@@ -88,7 +107,15 @@ colisionDown();
   else{
   const QGraphicsItem * const other = others[0];
   lista<BolaNegra *> *bolas = List_Bola_Negra;
+   Node<BolaBlanca *> *blanca = List_Bola_Blanca->get_head();
   for(int i=1; i<=bolas->length();i++){
+      if(((other->x()) ==(blanca->get_data()->getPosx())) & ((other->y()) ==  (blanca->get_data()->getPosy())) ){
+
+
+       flagNewTiro=false;
+       facade->GameOver();
+
+      }
   if(((other->x()) ==(bolas->rove(i)->get_data()->getPosx())) & ((other->y()) ==  (bolas->rove(i)->get_data()->getPosy())) ){
       bolas->rove(i)->get_data()->setFuerzaAngule(angulo,fuerza);
       bolas->rove(i)->get_data()->CalFuerza();
@@ -120,7 +147,7 @@ colisionDown();
 
   this->setPos(x() + speed_X, y() + speed_Y);
  //bolasound->pause();
-
+return;
 
 
 
@@ -223,9 +250,11 @@ void BolaTiro::CalFuerza()
 
 void BolaTiro::setFuerzaAngule(qreal pAngulo, int pFuerza)
 {
-    fuerza=(double)pFuerza;
-    angulo=pAngulo;
-    cout<<" fuerza seteada "<<endl;
+    this->fuerza=(double)pFuerza;
+    this->angulo=pAngulo;
+     CalFuerza();
+     flagNewTiro=true;
+    //cout<<" fuerza seteada "<<this->fuerza<<endl;
 }
 
 void BolaTiro::colisionUp()

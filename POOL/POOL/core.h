@@ -1,6 +1,6 @@
 #ifndef CORE_H
 #define CORE_H
-#include "connectgui.h"
+
 #include "Poolconstants.h"
 #include "linked_list.h"
 #include "Node.h"
@@ -11,11 +11,13 @@
 #include <QObject>
 #include <QThread>
 
+class connectgui;
+
 class Core:public QObject
 {
 Q_OBJECT
 public:
-    Core();
+
     QThread workerThread;
     lista<LogicBolaNegra * >   List_Bola_Negra;
     lista<LogicBolaTiro * >   List_Bola_Tiro;
@@ -25,6 +27,13 @@ public:
     lista<LogicBolaNegra *> get_list_bolaNegra();
     lista<LogicBolaBlanca * > get_list_bolaBlanca();
     lista<LogicBolaTiro * > get_list_bolaTiro();
+    static Core* getInstance();
+    void newGame();
+    void GameOver();
+
+private:
+     Core();
+     static Core* unicCore;
 };
 
 #endif // CORE_H

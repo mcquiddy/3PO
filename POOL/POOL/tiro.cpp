@@ -4,12 +4,13 @@
 tiro::tiro(int id, int generacion, connectgui *pfacade)
 {
     this->angulo=rand()%360 +1;
-    this->fuerza= rand()%15 +1;
+    this->fuerza= rand()%10 +1;
     this->generacion=generacion;
     this->facade=pfacade;
     padre=NULL;
     madre=NULL;
-    facade->nuevoTiro(10,120);
+    cout<<" fuerza "<<fuerza<<" angulo "<<angulo<<endl;
+    facade->nuevoTiro(fuerza,angulo);
     
 }
 
@@ -28,7 +29,7 @@ int tiro::get_fuerza()
     return this->fuerza;
 }
 
-tiro::tiro(tiro *mama, tiro *papa, int angulo, int fuerza, int id, int generacion)
+tiro::tiro(tiro *mama, tiro *papa, int angulo, int fuerza, int id, int generacion, connectgui *pfacade)
 {
     this->madre=mama;
     this->padre=papa;
@@ -36,7 +37,8 @@ tiro::tiro(tiro *mama, tiro *papa, int angulo, int fuerza, int id, int generacio
     this->fuerza=fuerza;
     this->generacion=generacion;
     this->id=id;
-   // facade.nuevoTiro(fuerza,angulo);
+    this->facade=pfacade;
+    facade->nuevoTiro(fuerza,angulo);
 }
 
 

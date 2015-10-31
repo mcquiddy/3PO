@@ -14,8 +14,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 //     game = new Poolgame();
 //     game->show();
-     core = new Core();
-
+     core = Core::getInstance();
+     core->newGame();
 
 
     return a.exec();

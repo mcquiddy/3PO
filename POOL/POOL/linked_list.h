@@ -22,6 +22,7 @@ private:
 public:
 	void insert_head(T new_data);
 	void insert_tail(T new_data);
+    void swap(Node<T>* temp, Node<T>* swap);
 	void delete_data(T data);
 	bool isInList(T data);
     Node<T>* rove(int x);
@@ -87,6 +88,36 @@ void lista<T>::insert_tail(T new_data){
 		this->tail=newNode;
 	}
     this->Length++;
+}
+template<typename T>
+void lista<T>::swap(Node<T> *temp, Node<T> *swap)
+{
+    if(temp==this->head){
+        temp->set_next(swap->get_next());
+        swap->set_next(temp);
+        swap->set_prev(temp->get_prev());
+        temp->set_prev(swap);
+        temp->get_next()->set_prev(temp);
+        this->head=swap;
+    }
+    else if(swap==this->tail){
+        temp->set_next(swap->get_next());
+        swap->set_next(temp);
+        swap->set_prev(temp->get_prev());
+        temp->set_prev(swap);
+        swap->get_prev()->set_next(swap);
+        this->tail=temp;
+
+    }
+
+    else{
+        temp->set_next(swap->get_next());
+        swap->set_next(temp);
+        swap->set_prev(temp->get_prev());
+        temp->get_next()->set_prev(temp);
+        temp->set_prev(swap);
+        swap->get_prev()->set_next(swap);
+    }
 }
 
 template<typename T>
